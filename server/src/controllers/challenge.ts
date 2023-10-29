@@ -33,7 +33,8 @@ export const getAllPendingChallenges = async (req: Request, res: Response) => {
 export const acceptChallenge = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const challenge = await Challenge.findByIdAndUpdate(id, { accepted: true }, { new: true });
+        const { xp } = req.body;
+        const challenge = await Challenge.findByIdAndUpdate(id, { accepted: true, xp }, { new: true });
         return res.status(200).json(challenge);
     } catch (error) {
         return res.status(500).json(error);
@@ -43,10 +44,18 @@ export const acceptChallenge = async (req: Request, res: Response) => {
 export const denyChallenge = async (req: Request, res: Response) => {
     try {
         const { id } = req.params;
-        const challenge = await Challenge.findByIdAndUpdate(id, { accepted: false }, { new: true });
+        const challenge = await Challenge.deleteOne({  _id: id  });
         return res.status(200).json(challenge);
     } catch (error) {
         return res.status(500).json(error);
     }
 };
 
+export const getChallenges = async (req: Request, res: Response) => {
+    try {
+        const challenges = await Challenge.find({ email: req.user?.email });
+        return res.status(200).json(challenges);
+    } catch (error) {
+        return res.status(500).json(error);
+    } 
+};

@@ -32,7 +32,7 @@ const ChallengeForm = () => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form className="flex flex-col max-w-2xl mx-auto w-full space-y-4" onSubmit={handleSubmit(onSubmit)}>
             <input
                 {...register("title")}
                 type="text"

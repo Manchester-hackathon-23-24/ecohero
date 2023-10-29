@@ -4,6 +4,7 @@ interface IChallenge {
     description: string;
     image: string;
     email: string;
+    xp: number;
     createdAt: string;
     updatedAt: string;
 }

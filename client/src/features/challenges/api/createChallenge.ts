@@ -2,7 +2,7 @@ import { api } from "../../../app/api";
 import { useMutation } from "@tanstack/react-query";
 
 const createChallenge = (data: { title: string; description: string; image: string }) => {
-    return api.post("/", data).then((response) => response.data);
+    return api.post("/challenge", data).then((response) => response.data);
 };
 
 export const useCreateChallengeMutation = () => {

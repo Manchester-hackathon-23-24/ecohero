@@ -2,7 +2,7 @@ import { api } from "../../../app/api";
 import { useQuery } from "@tanstack/react-query";
 
 const getAcceptedChallenges = (): Promise<IChallenge[]> => {
-    return api.get("/").then((response) => response.data);
+    return api.get("/challenge").then((response) => response.data);
 };
 
 export const useGetAcceptedChallengesQuery = () => {

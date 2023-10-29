@@ -1,10 +1,14 @@
 import { useAcceptChallengeMutation } from "../api/acceptChallenge";
 
-const AcceptChallenge = ({ challengeId }: { challengeId: string }) => {
+const AcceptChallenge = ({ challengeId, xp }: { challengeId: string, xp: number }) => {
     const { mutate } = useAcceptChallengeMutation();
 
+    const acceptChallenge = () => {
+        mutate({ challengeId, xp });
+    };
+
     return (
-        <button onClick={() => mutate(challengeId)} className="btn btn-primary">
+        <button onClick={acceptChallenge} className="btn btn-primary">
             Accept
         </button>
     );
