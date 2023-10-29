@@ -2,6 +2,8 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useRegisterMutation } from "../api/register";
+import { redirect } from "react-router-dom";
+
 
 const RegisterFormSchema = yup.object({
     email: yup.string().required("This field is required"),
@@ -14,9 +16,12 @@ const RegisterForm = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<RegisterFormValues>({
         resolver: yupResolver(RegisterFormSchema),
     });
-    const { mutate: signup } = useRegisterMutation();
-    const onRegister = (data: RegisterFormValues) => {
-        signup(data);
+    const { mutateAsync: signup } = useRegisterMutation();
+    const onRegister = async (data: RegisterFormValues) => {
+        const userData = await signup(data);
+        if (userData) {
+            return redirect("/");
+        }
     };
 
     return (

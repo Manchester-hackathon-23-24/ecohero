@@ -11,8 +11,8 @@ const Challenge = (props: IChallenge) => {
             <div className="card-body">
                 <h2 className="card-title">{props.title}</h2>
                 <p>{props.description}</p>
+                <p className="font-bold text-success-content">GAINED XP: {props.xp}</p>
                 <div className="card-actions mt-auto">
-                    {/* <button className="btn btn-primary text-white">Donate</button> */}
                     <button className="btn btn-primary text-white">Join</button>
                     <button className="btn btn-ghost">Learn more</button>
                 </div>

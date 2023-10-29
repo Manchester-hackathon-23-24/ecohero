@@ -1,6 +1,6 @@
 import { api } from "../../../app/api";
 import { useMutation } from "@tanstack/react-query";
-import { setCredentials } from "../authSlice";
+// import { setCredentials } from "../authSlice";
 
 const register = async (email: string, password: string): Promise<IUser> => {
     const response = await api.post("/auth/register", { email, password });
@@ -11,7 +11,8 @@ export const useRegisterMutation = () => {
     return useMutation({
         mutationFn: (credentials: { email: string; password: string }) => register(credentials.email, credentials.password),
         onSuccess: (data) => {
-            setCredentials(data);
+            // setCredentials(data);
+            localStorage.setItem("user", JSON.stringify({ user: data }));
         }
     });
 };

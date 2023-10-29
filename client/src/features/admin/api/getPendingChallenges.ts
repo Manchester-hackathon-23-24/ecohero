@@ -2,7 +2,7 @@ import { api } from "../../../app/api";
 import { useQuery } from "@tanstack/react-query";
 
 const getPendingChallenges = () => {
-    return api.get("/pending").then((response) => response.data);
+    return api.get("/challenge/pending").then((response) => response.data);
 };
 
 export const useGetPendingChallengesQuery = () => {

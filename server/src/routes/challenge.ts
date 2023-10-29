@@ -5,7 +5,7 @@ const router = Router();
 
 router.post("/", createChallenge);
 router.get("/", getAllAcceptedChallenges);
-router.get("/user", getChallenges)
+router.get("/user", getChallenges);
 router.get("/pending", verifyRolesMiddleware(["ADMIN"]), getAllPendingChallenges);
 router.patch("/:id/accept", verifyRolesMiddleware(["ADMIN"]), acceptChallenge);
 router.delete("/:id", verifyRolesMiddleware(["ADMIN"]), denyChallenge);

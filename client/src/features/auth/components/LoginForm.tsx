@@ -2,7 +2,7 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useLoginMutation } from "../api/login";
-import { setCredentials } from "../authSlice";
+import { redirect } from "react-router-dom";
 
 const LoginFormSchema = yup.object({
     email: yup.string().required("This field is required"),
@@ -17,7 +17,9 @@ const LoginForm = () => {
     const { mutateAsync: login } = useLoginMutation();
     const onLogin = async (data: LoginFormValues) => {
         const userData = await login(data);
-        setCredentials(userData);
+        if (userData) {
+            return redirect("/");
+        }
     };
 
     return (
